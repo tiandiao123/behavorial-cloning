@@ -7,30 +7,6 @@ import numpy as np
 
 
 
-def get_image_data(ag_len,csv_file):
-    images = np.asarray(os.listdir(csv_file))
-    center = np.ndarray(shape=(ag_len, 32, 64, 3))
-    right = np.ndarray(shape=(ag_len, 32, 64, 3))
-    left = np.ndarray(shape=(ag_len, 32, 64, 3))
-
-    count = 0
-    for image in images:
-        image_file = os.path.join('../IMG', image)
-        if image.startswith('center'):
-            image_data = ndimage.imread(image_file).astype(np.float32)
-            center[count % ag_len] = imresize(image_data, (32,64,3))#[12:,:,:]
-        elif image.startswith('right'):
-            image_data = ndimage.imread(image_file).astype(np.float32)
-            right[count % ag_len] = imresize(image_data, (32,64,3))#[12:,:,:]
-        elif image.startswith('left'):
-            image_data = ndimage.imread(image_file).astype(np.float32)
-            left[count % ag_len] = imresize(image_data, (32,64,3))#[12:,:,:]
-            count += 1
-
-
-
-
-
 def process_images(image):
     imagearray=mpimg.imread(image)
     return imagearray
