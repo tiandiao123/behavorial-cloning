@@ -39,6 +39,9 @@ left_images = np.ndarray(shape=(len(left_angles), 32, 64, 3))
 count1 = 0
 count2 = 0
 count3 = 0
+
+#I referenced some codes from Forums to get data(since originally I use my own functions in process_image.py file but didn't work)
+#The reason why my get_data function didn't work is that the log file's image files names don't fit with the image files names in the IMG File
 for image in images:
     image_file = os.path.join('../IMG', image)
     if image.startswith('center'):
