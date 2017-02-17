@@ -10,17 +10,12 @@ My method: Use Alexnet as my begining point, and extend Alecnet to a deeper neur
 ### Data Processing:
 As for the image data, I need to read all the image files from log file, and then extract angle values for every pictures. After that I need to get data from IMG file, and resize my IMG file into 32*64 so that the model can be trained in my CPU computer. If not, it is a liitle slow. Originally, I use 160*320 size to train my model, but the data's total size exceeds my PC's memory when training. That's why I changed it into 32*64,but it is not bad at the end. 
 Here is two pictures to show the extracted image data after precessing:
+
 ![png](index.png)
-
-
-    (1, 18, 80, 1)
 
 
 
 ![png](left_demo.png)
-
-
-    (1, 18, 80, 1)
 
 
 ### Let's take a look at my neural network model:
@@ -78,16 +73,8 @@ You will see that the neural network has input size 32*64, but I cropped the 10 
 
 ### final loss and val_loss data:
 Also, I drawed a picture to show how loss and validation loss change over training my neural model:
+
 ![png](figure.png)
 
-
-    (1, 18, 80, 1)
-
-
-
-![png](output_5_3.png)
-
-
-    (1, 18, 80, 1)
 
 This project is from udacity! 
