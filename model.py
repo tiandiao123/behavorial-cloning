@@ -117,25 +117,18 @@ model.add(Dense(1))
 model.summary()
 
 adam = Adam(lr=0.0001)
-model.compile(loss='mse',optimizer=adam)
+model.compile(loss='mse',optimizer='adam')
 
 checkpoint = ModelCheckpoint(filepath = 'model.h5', verbose = 1, save_best_only=True, monitor='val_loss')
 callback = EarlyStopping(monitor='val_loss', patience=2, verbose=1)
 
-history_object=model.fit(X_train,
-        y_train,
-        nb_epoch=20,
-        verbose=1,
-        batch_size=128,
-        shuffle=True,
-        validation_data=(X_validation, y_validation),
-        callbacks=[checkpoint, callback])
-
-
+history_object=model.fit(X_train,y_train,nb_epoch=20,verbose=1,batch_size=128,shuffle=True,validation_data=(X_validation, y_validation),callbacks=[checkpoint, callback])
 json = model.to_json()
 with open('model.json', 'w') as f:
     json.dump(json, f)
 print("Constructed Model has been saved")
+
+
 #draw the pictures to see the loss and val_loss changes over training
 plt.plot(history_object.history['loss'])
 plt.plot(history_object.history['val_loss'])
