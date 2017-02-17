@@ -117,7 +117,7 @@ model.add(Dense(1))
 model.summary()
 
 adam = Adam(lr=0.0001)
-model.compile(loss='mse',optimizer='adam')
+model.compile(loss='mse',optimizer=adam)
 
 checkpoint = ModelCheckpoint(filepath = 'model.h5', verbose = 1, save_best_only=True, monitor='val_loss')
 callback = EarlyStopping(monitor='val_loss', patience=2, verbose=1)
