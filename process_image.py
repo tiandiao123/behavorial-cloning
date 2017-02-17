@@ -1,22 +1,35 @@
-import pandas as pd
-import os
-import json
-from skimage.exposure import adjust_gamma
-from keras.models import Sequential
-from keras.layers import Dense, Dropout, Activation, Flatten, Convolution2D, MaxPooling2D
-from keras.layers.normalization import BatchNormalization
-from keras.optimizers import Adam
-from sklearn.model_selection import train_test_split
-from keras.callbacks import ModelCheckpoint, EarlyStopping
-from scipy import ndimage
-from scipy.misc import imresize
-
-
-
 import csv
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 import numpy as np
+
+
+
+
+
+def get_image_data(ag_len,csv_file):
+    images = np.asarray(os.listdir(csv_file))
+    center = np.ndarray(shape=(ag_len, 32, 64, 3))
+    right = np.ndarray(shape=(ag_len, 32, 64, 3))
+    left = np.ndarray(shape=(ag_len, 32, 64, 3))
+
+    count = 0
+    for image in images:
+        image_file = os.path.join('../IMG', image)
+        if image.startswith('center'):
+            image_data = ndimage.imread(image_file).astype(np.float32)
+            center[count % ag_len] = imresize(image_data, (32,64,3))#[12:,:,:]
+        elif image.startswith('right'):
+            image_data = ndimage.imread(image_file).astype(np.float32)
+            right[count % ag_len] = imresize(image_data, (32,64,3))#[12:,:,:]
+        elif image.startswith('left'):
+            image_data = ndimage.imread(image_file).astype(np.float32)
+            left[count % ag_len] = imresize(image_data, (32,64,3))#[12:,:,:]
+            count += 1
+
+
+
+
 
 def process_images(image):
     imagearray=mpimg.imread(image)
@@ -46,22 +59,4 @@ def get_data(csv_file):
             car_images.extend(img_center, img_left, img_right)
             steering_angles.extend(steering_center, steering_left, steering_right)
 
-def process_data(csv_file, angles):
-    images = np.asarray(os.listdir(csv_file))
-    center = np.ndarray(shape=(len(angles), 32, 64, 3))
-    right = np.ndarray(shape=(len(angles), 32, 64, 3))
-    left = np.ndarray(shape=(len(angles), 32, 64, 3))
-    count = 0
-    for image in images:
-        image_file = os.path.join('../IMG', image)
-        if image.startswith('center'):
-            image_data = ndimage.imread(image_file).astype(np.float32)
-            center[count % len(angles)] = imresize(image_data, (32,64,3))#[12:,:,:]
-        elif image.startswith('right'):
-            image_data = ndimage.imread(image_file).astype(np.float32)
-            right[count % len(angles)] = imresize(image_data, (32,64,3))#[12:,:,:]
-        elif image.startswith('left'):
-            image_data = ndimage.imread(image_file).astype(np.float32)
-            left[count % len(angles)] = imresize(image_data, (32,64,3))#[12:,:,:]
-            count += 1
-        return (center,right,left)
+
