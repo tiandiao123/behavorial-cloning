@@ -18,7 +18,7 @@ Here is two pictures to show the extracted image data after precessing:
 ### Here is The result of the final review of my simulation
 You can see the car can drive by itself based on my neural network model!
 
-![png](output.png) 
+![png](output.gif) 
 
 
 ### Let's take a look at my neural network model:
