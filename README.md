@@ -6,7 +6,7 @@ In this project, I will train data sets of photos taken from cameras of the simu
 you can download your software for training data in this website:https://d17h27t6h515a5.cloudfront.net/topher/2016/(Linux)November/5831f0f7_simulator-linux/simulator-linux.zip, and make sure the IMG folder is in the same directory as self_driving_car_simulation directory. 
 
 ### Data Processing:
-As for the image data, I need to read all the image files from log file, and then extract angle values for every pictures. After that I need to get data from IMG file, and resize my IMG file into 32*64 so that the model can be trained in my CPU computer. If not, it is a liitle slow. Originally, I use 160*320 size to train my model, but the data's total size exceeds my PC's memory when training. That's why I changed it into 32*64,but it is not bad at the end. 
+As for the image data, I need to read all the image files from log file, and then extract angle values for every pictures. After that I need to get data from IMG file, and resize my IMG file into 32\*64 so that the model can be trained in my CPU computer. If not, it is a liitle slow. Originally, I use 160\*320 size to train my model, but the data's total size exceeds my PC's memory when training. That's why I changed it into 32*64,but it is not bad at the end. 
 Here is two pictures to show the extracted image data after precessing:
 
 ![png](index.png)
