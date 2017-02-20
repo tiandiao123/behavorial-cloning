@@ -1,4 +1,5 @@
-Time: January 2016
+Time: January 2017
+
 Name:Cuiqing Li
 
 In this project, I will train data sets of photos taken from cameras of the simulation cars using neural network model, and then output the steer angle of the cars! Then, save my model data into a file, and test my model in my simulation car software to see whether my neural network have good performance
